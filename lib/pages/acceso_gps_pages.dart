@@ -25,8 +25,14 @@ class _AccesoGpsPageState extends State<AccesoGpsPage>
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    print('=======================>');
+  void didChangeAppLifecycleState(AppLifecycleState state) async  {
+    if (state == AppLifecycleState.resumed) {
+      if (await  Permission.location.isGranted) {
+        Navigator.pushReplacementNamed(context,'loading');
+        
+      }
+    }
+    // print('=======================> $state'); 
   }
 
   @override

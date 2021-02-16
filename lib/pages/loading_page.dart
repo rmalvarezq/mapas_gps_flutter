@@ -24,9 +24,11 @@ class LoadingPage extends StatelessWidget {
 // TODO: GPS está activo ?
     await Future.delayed(Duration(milliseconds: 100));
 
+    print('Loading page hola mundo!!!');
     // Navigator.pushReplacement(
     //     context, navegarMapaFadeIn(context, MapaPage()));
-    Navigator.pushReplacement(
-        context, navegarMapaFadeIn(context, AccesoGpsPage()));
+
+    // Navigator.pushReplacement(
+    //     context, navegarMapaFadeIn(context, AccesoGpsPage()));
   }
 }

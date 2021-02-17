@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mapas_gps_flutter/bloc/mapa/mapa_bloc.dart';
 import 'package:mapas_gps_flutter/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
+import 'package:mapas_gps_flutter/widgets/widgets.dart';
 
 class MapaPage extends StatefulWidget {
   @override
@@ -34,13 +35,12 @@ class _MapaPageState extends State<MapaPage> {
       ),
       body: BlocBuilder<MiUbicacionBloc, MiUbicacionState>(
           builder: (_, state) => crearMapa(state)),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.arrow_back),
-      //   elevation: 10,
-      //   onPressed: () {
-      //     Navigator.pushReplacementNamed(context, 'acceso_gps');
-      //   },
-      // ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          BtnUbicacion()
+        ],
+      ),
     );
   }
 

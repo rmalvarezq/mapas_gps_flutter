@@ -37,9 +37,7 @@ class _MapaPageState extends State<MapaPage> {
           builder: (_, state) => crearMapa(state)),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          BtnUbicacion()
-        ],
+        children: [BtnUbicacion()],
       ),
     );
   }
@@ -47,6 +45,8 @@ class _MapaPageState extends State<MapaPage> {
   Widget crearMapa(MiUbicacionState state) {
     if (!state.existeUbicacion) return Center(child: Text('Ubicando...'));
     final mapaBloc = BlocProvider.of<MapaBloc>(context);
+
+    mapaBloc.add(OnUNuevaUbicacion(state.ubicacion));
 
     final cameraPosition =
         new CameraPosition(target: state.ubicacion, zoom: 15);
@@ -57,6 +57,7 @@ class _MapaPageState extends State<MapaPage> {
       myLocationButtonEnabled: false,
       zoomControlsEnabled: false,
       onMapCreated: mapaBloc.initMapa,
+      // polylines: mapaBloc.state.polylines.values.toSet(),
       // onMapCreated: (GoogleMapController controller) =>
       //     mapaBloc.initMapa(controller), //también sirve, el de arriba es para no usar tanto código
     );

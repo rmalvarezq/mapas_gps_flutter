@@ -15,13 +15,13 @@ class _MapaPageState extends State<MapaPage> {
   @override
   void initState() {
     super.initState();
-    context.bloc<MiUbicacionBloc>().iniciarSeguimiento();
+    context.read<MiUbicacionBloc>().iniciarSeguimiento();
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
-    context.bloc<MiUbicacionBloc>().cancelarSeguimiento();
+    context.read<MiUbicacionBloc>().cancelarSeguimiento();
     super.dispose();
   }
 
@@ -57,7 +57,7 @@ class _MapaPageState extends State<MapaPage> {
       myLocationButtonEnabled: false,
       zoomControlsEnabled: false,
       onMapCreated: mapaBloc.initMapa,
-      // polylines: mapaBloc.state.polylines.values.toSet(),
+      polylines: mapaBloc.state.polylines.values.toSet(),
       // onMapCreated: (GoogleMapController controller) =>
       //     mapaBloc.initMapa(controller), //también sirve, el de arriba es para no usar tanto código
     );

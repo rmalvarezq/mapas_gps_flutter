@@ -1,10 +1,9 @@
 part of 'widgets.dart';
 
-class BtnUbicacion extends StatelessWidget {
+class BtnMiRuta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mapaBloc = context.read<MapaBloc>();
-    final miUbicacionBloc = context.read<MiUbicacionBloc>();
 
     return Container(
       margin: EdgeInsets.only(bottom: 10),
@@ -17,8 +16,7 @@ class BtnUbicacion extends StatelessWidget {
             color: Colors.black87,
           ),
           onPressed: () {
-            final destino = miUbicacionBloc.state.ubicacion;
-            mapaBloc.moverCamara(destino);
+            // mapaBloc.moverCamara(destino);
           },
         ),
       ),

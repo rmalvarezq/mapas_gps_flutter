@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mapas_gps_flutter/bloc/mapa/mapa_bloc.dart';
 import 'package:mapas_gps_flutter/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 
 class MapaPage extends StatefulWidget {
@@ -45,6 +46,8 @@ class _MapaPageState extends State<MapaPage> {
 
   Widget crearMapa(MiUbicacionState state) {
     if (!state.existeUbicacion) return Center(child: Text('Ubicando...'));
+    final mapaBloc = BlocProvider.of<MapaBloc>(context);
+
     final cameraPosition =
         new CameraPosition(target: state.ubicacion, zoom: 15);
     return GoogleMap(
@@ -53,6 +56,9 @@ class _MapaPageState extends State<MapaPage> {
       myLocationEnabled: true,
       myLocationButtonEnabled: false,
       zoomControlsEnabled: false,
+      onMapCreated: mapaBloc.initMapa,
+      // onMapCreated: (GoogleMapController controller) =>
+      //     mapaBloc.initMapa(controller), //también sirve, el de arriba es para no usar tanto código
     );
   }
 }

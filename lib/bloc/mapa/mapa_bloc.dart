@@ -38,17 +38,30 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     MapaEvent event,
   ) async* {
     if (event is OnMapaListo) {
-      print('mapa listo ');
+      // print('mapa listo ');
       yield state.copyWith(mapaListo: true);
+
     } else if (event is OnUNuevaUbicacion) {
-      // print('Nueva Ubicacion: ${event.ubicacion}');
       yield* this._onNuevaUbicacion(event);
+
     } else if (event is OnMarcarRecorrido) {
       yield* this._onMarcarRecorrido(event);
+
+    } else if (event is OnSeguirUbicacion) {
+
+      yield* this._onSeguirUbicacion(event);
+    }
+     else if (event is OnMovioMapa) {
+
+      // yield* this._onSeguirUbicacion(event);
     }
   }
 
   Stream<MapaState> _onNuevaUbicacion(OnUNuevaUbicacion event) async* {
+    if (state.seguirUbicacion) {
+      this.moverCamara(event.ubicacion);
+    }
+
     final List<LatLng> points = [
       ...this._miRuta.points,
       event.ubicacion
@@ -69,5 +82,12 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     currentPolylines['mi_ruta'] = this._miRuta;
     yield state.copyWith(
         dibujarRecorrido: !state.dibujarRecorrido, polylines: currentPolylines);
+  }
+
+  Stream<MapaState> _onSeguirUbicacion(OnSeguirUbicacion event) async* {
+    if (!state.seguirUbicacion) {
+      this.moverCamara(this._miRuta.points[this._miRuta.points.length - 1]);
+    }
+    yield state.copyWith(seguirUbicacion: !state.seguirUbicacion);
   }
 }

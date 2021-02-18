@@ -28,13 +28,15 @@ class _MapaPageState extends State<MapaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 10,
-        title: Text('Mapa Page'),
-        backgroundColor: Colors.redAccent,
+      body: Stack(
+        children: [
+          BlocBuilder<MiUbicacionBloc, MiUbicacionState>(
+              builder: (_, state) => crearMapa(state)),
+          Positioned(
+            top: 15,
+            child: SearchBar()),
+        ],
       ),
-      body: BlocBuilder<MiUbicacionBloc, MiUbicacionState>(
-          builder: (_, state) => crearMapa(state)),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

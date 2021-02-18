@@ -12,11 +12,11 @@ class BtnMiRuta extends StatelessWidget {
         maxRadius: 25,
         child: IconButton(
           icon: Icon(
-            Icons.my_location,
+            Icons.more_horiz,
             color: Colors.black87,
           ),
           onPressed: () {
-            // mapaBloc.moverCamara(destino);
+            mapaBloc.add(OnMarcarRecorrido());
           },
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mapas_gps_flutter/models/search_result.dart';
 
-class SearchDestination extends SearchDelegate {
+class SearchDestination extends SearchDelegate<SearchResult> {
   @override
   final String searchFieldLabel;
   SearchDestination() : this.searchFieldLabel = 'Buscar';
@@ -16,7 +17,7 @@ class SearchDestination extends SearchDelegate {
     //TODO: retornar algo
     return IconButton(
       icon: Icon(Icons.arrow_back),
-      onPressed: () => this.close(context, null),
+      onPressed: () => this.close(context, SearchResult(cancelo: true)),
     );
   }
 
@@ -38,7 +39,7 @@ class SearchDestination extends SearchDelegate {
           onTap: () {
             // TODO: retornar algo
             print('manualmente');
-            this.close(context, null);
+            this.close(context, SearchResult(cancelo: false, manual: true));
           },
         )
       ],

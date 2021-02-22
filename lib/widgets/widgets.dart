@@ -8,6 +8,7 @@ import 'package:mapas_gps_flutter/bloc/mapa/mapa_bloc.dart';
 import 'package:mapas_gps_flutter/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 import 'package:mapas_gps_flutter/models/search_result.dart';
 import 'package:mapas_gps_flutter/search/search_destination.dart';
+import 'package:mapas_gps_flutter/services/traffic_service.dart';
 
 part 'btn_ubicacion.dart';
 part 'btn_mi_ruta.dart';

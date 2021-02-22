@@ -26,10 +26,10 @@ class SearchBar extends StatelessWidget {
         // color: Colors.red,
         child: GestureDetector(
           onTap: () async {
-            print('buscando...!');
+            // print('buscando...!');
             final SearchResult resultado = await showSearch(
                 context: context, delegate: SearchDestination());
-            print(resultado);
+            // print(resultado);
             this.retornoBusqueda(context, resultado);
           },
           child: Container(
@@ -56,8 +56,8 @@ class SearchBar extends StatelessWidget {
   }
 
   void retornoBusqueda(BuildContext context, SearchResult result) {
-    print('cancelo: ${result.cancelo}');
-    print('manual: ${result.manual}');
+    // print('cancelo: ${result.cancelo}');
+    // print('manual: ${result.manual}');
 
     if (result.cancelo) return;
     if (result.manual) {

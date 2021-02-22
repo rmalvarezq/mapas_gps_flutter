@@ -38,7 +38,7 @@ class SearchDestination extends SearchDelegate<SearchResult> {
           ),
           onTap: () {
             // TODO: retornar algo
-            print('manualmente');
+            // print('manualmente');
             this.close(context, SearchResult(cancelo: false, manual: true));
           },
         )

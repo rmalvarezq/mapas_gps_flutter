@@ -57,24 +57,23 @@ class _MapaPageState extends State<MapaPage> {
 
     final cameraPosition =
         new CameraPosition(target: state.ubicacion, zoom: 15);
-    return GoogleMap(
-      initialCameraPosition: cameraPosition,
-      mapType: MapType.normal,
-      myLocationEnabled: true,
-      myLocationButtonEnabled: false,
-      zoomControlsEnabled: false,
-      onMapCreated: mapaBloc.initMapa,
-      polylines: mapaBloc.state.polylines.values.toSet(),
-      onCameraMove: (cameraPosition) {
-        // cameraPosition.target= LatLng central del mapa
-        mapaBloc.add(OnMovioMapa(cameraPosition.target));
-      },
 
-      // onCameraIdle: () {
-      //   print('MapaIdle');
-      // },
-      // onMapCreated: (GoogleMapController controller) =>
-      //     mapaBloc.initMapa(controller), //también sirve, el de arriba es para no usar tanto código
+    return BlocBuilder<MapaBloc, MapaState>(
+      builder: (context, state) {
+        return GoogleMap(
+          initialCameraPosition: cameraPosition,
+          mapType: MapType.normal,
+          myLocationEnabled: true,
+          myLocationButtonEnabled: false,
+          zoomControlsEnabled: false,
+          onMapCreated: mapaBloc.initMapa,
+          polylines: mapaBloc.state.polylines.values.toSet(),
+          onCameraMove: (cameraPosition) {
+            // cameraPosition.target= LatLng central del mapa
+            mapaBloc.add(OnMovioMapa(cameraPosition.target));
+          },
+        );
+      },
     );
   }
 }
